@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 object NetworkMonitor {
 
-    private val _hasInternet = MutableStateFlow(false)
+    private val _hasInternet = true
     val hasInternet: StateFlow<Boolean> = _hasInternet.asStateFlow()
 
     private val _hasWifiOrEthernet = MutableStateFlow(false)
