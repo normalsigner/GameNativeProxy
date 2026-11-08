@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 object NetworkMonitor {
 
-    private val _hasInternet = true
+    private val _hasInternet = MutableStateFlow(true)
     val hasInternet: StateFlow<Boolean> = _hasInternet.asStateFlow()
 
     private val _hasWifiOrEthernet = MutableStateFlow(false)
@@ -49,7 +49,7 @@ object NetworkMonitor {
             // (guards against stale VPN after underlying WiFi drops;
             //  allows VPN in censorship scenarios where WiFi exists but isn't validated)
             val vpnValidated = validatedCaps.any { hasVpn(it) }
-            _hasInternet.value = nonVpnCaps.isNotEmpty() || (vpnValidated && nonVpnExists)
+            _hasInternet.value = true
             // WiFi/Ethernet transport: only trust non-VPN networks (VPN reports stale transports).
             // known edge case: censored WiFi + VPN → WiFi not validated → hasWifiOrEthernet=false,
             // so "WiFi only" blocks downloads. user must disable "WiFi only" to download via VPN.
