@@ -29,13 +29,13 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
 
-    - name: Empty credentials
+    - name: Dummy credentials
       run: |
         cat <<EOF > local.properties
-        POSTHOG_API_KEY=
-        POSTHOG_HOST=
-        STEAMGRIDDB_API_KEY=
-        CLOUD_PROJECT_NUMBER=
+        POSTHOG_API_KEY="dummy"
+        POSTHOG_HOST="https://localhost"
+        STEAMGRIDDB_API_KEY="dummy"
+        CLOUD_PROJECT_NUMBER="0"
         EOF
 
     - name: Build debug APK
