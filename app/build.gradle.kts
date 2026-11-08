@@ -56,7 +56,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "app.gamenative.mine"
+        applicationId = "app.gamenative"
 
         minSdk = 26
 
